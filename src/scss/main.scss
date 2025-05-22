@@ -159,7 +159,7 @@ main {
 .listProducts__list {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 120px;
 
   ul {
     max-width: 800px;
@@ -358,10 +358,9 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  width: 100%;
+  width: 60%;
 
   .size-option {
-    flex: 0 1 20%;
     margin: 5px;
     position: relative;
 
@@ -378,8 +377,8 @@ main {
     }
 
     label {
-      width: 100%;
-      height: 40px;
+      width: 32px;
+      height: 32px;
       background-color: transparent;
       border: 1px solid #ccc;
       display: flex;
@@ -468,6 +467,9 @@ main {
 }
 
 @media (max-width: 800px) {
+  .listProducts__list {
+    margin-top: 50px;
+  }
   .filters,
   .sorting {
     width: 100%;
@@ -524,7 +526,7 @@ main {
     margin: 0 16px;
 
     &:first-of-type {
-      margin-top: 55px;
+      margin-top: 80px;
     }
   }
 
@@ -535,7 +537,7 @@ main {
     font-size: 24px;
     font-weight: 400;
     color: var(--text-light);
-    margin-bottom: 20px;
+    margin-top: 30px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -548,6 +550,12 @@ main {
 
     &.expanded::after {
       transform: rotate(180deg);
+    }
+
+    .mobile-sort-menu {
+      input[type="radio"] {
+        display: none;
+      }
     }
   }
 
@@ -633,6 +641,8 @@ main {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
   }
 
   .sort-options {
@@ -643,9 +653,10 @@ main {
     margin-top: 50px;
 
     label {
-      margin: 10px;
+      margin-top: 30px;
       font-size: 24px;
       width: 100%;
+      padding-left: 25px;
     }
   }
 
