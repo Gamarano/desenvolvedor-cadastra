@@ -55,9 +55,12 @@ function styles() {
 }
 
 function scripts() {
-  return new Promise((resolve) =>
+  return new Promise((resolve, reject) =>
     webpack(webpackConfig(paths), (err, stats) => {
-      if (err) console.log("Webpack", err);
+      if (err) {
+        console.log("Webpack", err);
+        return reject(err);
+      }
 
       console.log(
         stats.toString({
@@ -79,30 +82,37 @@ function scripts() {
 }
 
 function html() {
-  return src(paths.html.src).pipe(browserSync.stream()).pipe(dest(paths.dest));
+  return src(paths.html.src)
+    .pipe(dest(paths.dest))
+    .pipe(browserSync.stream());
 }
 
-/*function img() {
-  return src(paths.img.src).pipe(dest(paths.dest + "/img"));
-}*/
+function img() {
+  return src(paths.img.src, { encoding: false }) 
+    .pipe(dest(paths.dest + "/img"));
+}
 
-const build = series(clean, parallel(styles, scripts, html));
-const dev = () => {
-  watch(paths.scripts.watch, { ignoreInitial: false }, scripts).on(
-    "change",
-    browserSync.reload
-  );
-  watch(paths.styles.src, { ignoreInitial: false }, styles);
-  //watch(paths.img.src, { ignoreInitial: false }, img);
-  watch(paths.html.src, { ignoreInitial: false }, html).on(
-    "change",
-    browserSync.reload
-  );
+const build = series(clean, parallel(styles, scripts, html), img); 
+
+const dev = series(build, () => {
+  watch(paths.scripts.watch, { ignoreInitial: true, delay: 500 }, series(scripts))
+    .on("change", browserSync.reload);
+  
+  watch(paths.styles.src, { ignoreInitial: true, delay: 300 }, styles);
+  
+  watch(paths.img.src, { ignoreInitial: true, delay: 500 }, series(img))
+    .on("change", browserSync.reload);
+  
+  watch(paths.html.src, { ignoreInitial: true, delay: 300 }, series(html))
+    .on("change", browserSync.reload);
+  
   server();
-};
+});
 
 exports.build = build;
 exports.server = server;
 exports.styles = styles;
 exports.scripts = scripts;
+exports.img = img;
+exports.html = html;
 exports.default = dev;
