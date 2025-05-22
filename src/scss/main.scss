@@ -209,6 +209,96 @@ html {
     }
 }
 
+// Personalizações para checkboxes de cores e preços
+.filter-color,
+.filter-price {
+    .color-option,
+    .price-option {
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1px solid #00000080;
+            margin-right: 10px;
+            cursor: pointer;
+            position: relative;
+            background: white;
+
+            &:checked {
+                border: 1px solid #00000080;
+                
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 10px;
+                    height: 10px;
+                    background-color: #FB953E;
+                }
+            }
+        }
+    }
+
+    // Estilo para mostrar apenas 5 itens inicialmente
+    .color-options-container {
+        .color-option:nth-child(n+6) {
+            display: none;
+        }
+
+        &.expanded {
+            .color-option {
+                display: flex;
+            }
+        }
+    }
+
+    .price-options-container {
+        .price-option:nth-child(n+6) {
+            display: none;
+        }
+
+        &.expanded {
+            .price-option {
+                display: flex;
+            }
+        }
+    }
+
+    .show-more-button {
+      height: 16px;
+      background: transparent;
+      border: none;
+      color: #666666;
+      text-decoration: underline;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 10px;
+
+        &::after {
+            content: "";
+            width: 12px;
+            height: 9px;
+            background-image: url('img/flag-order.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        &.expanded {
+            &::after {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
 .sizes-container {
     display: flex;
     flex-wrap: wrap;
@@ -235,19 +325,20 @@ html {
         label {
             width: 100%;
             height: 40px;
-            background-color: #f0f0f0;
+            background-color: transparent;
             border: 1px solid #ccc;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: border-color 0.3s;
             position: relative;
             z-index: 0;
         }
 
         input[type="checkbox"]:checked+label {
-            background-color: #cccccc;
+            border-color: #FB953E;
+            background-color: transparent;
         }
     }
 }
@@ -342,6 +433,33 @@ html {
         font-weight: 400;
         color: #666666;
     }
+
+    // Ajuste para mobile - 2 itens por linha centralizados
+    .listProducts__list {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+        padding: 0 20px;
+
+        ul {
+            width: 100%;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            justify-content: center;
+        }
+    }
+
+    .cardProduct {
+        max-width: 100%;
+        width: 100%;
+        
+        button {
+            width: 100%;
+            max-width: 195px;
+        }
+    }
 }
 
 .side-panel {
@@ -363,19 +481,6 @@ html {
     .header {
         border-bottom: 2px solid #c7c7c7;
         margin-bottom: 10px;
-    }
-
-    .listProducts__list {
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-
-        ul {
-            max-width: 800px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
     }
 }
 
@@ -460,6 +565,68 @@ html {
         border: none;
         color: #000000;
     }
+
+    // Aplicar os mesmos estilos de checkbox para mobile
+    .filter-color-section,
+    .filter-price-section {
+        .color-option,
+        .price-option {
+            input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                width: 16px;
+                height: 16px;
+                border: 1px solid #00000080;
+                margin-right: 10px;
+                cursor: pointer;
+                position: relative;
+                background: white;
+
+                &:checked {
+                    border: 1px solid #00000080;
+                    
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 10px;
+                        height: 10px;
+                        background-color: #FB953E;
+                    }
+                }
+            }
+        }
+        .price-options-container {
+            .price-option:nth-child(n+6) {
+                display: none;
+            }
+
+            &.expanded {
+                .price-option {
+                    display: flex;
+                }
+            }
+        }
+    }
+
+    .sizes-container {
+        justify-content: center;
+        
+        .size-option {
+            label {
+                background-color: transparent;
+                border: 1px solid #ccc;
+            }
+
+            input[type="checkbox"]:checked+label {
+                border-color: #FB953E;
+                background-color: transparent;
+            }
+        }
+    }
 }
 
 @media (min-width: 801px) {
@@ -471,7 +638,6 @@ html {
         display: none;
     }
 }
-
 
 @media (max-width: 800px) {
     .title-mobile {
@@ -529,10 +695,6 @@ html {
         color: #666666;
         margin-top: 30px;
         margin-bottom: 20px;
-    }
-
-    .sizes-container {
-        justify-content: center;
     }
 
     .filter-price-section {
@@ -600,10 +762,6 @@ html {
   color: #ffffff;
 }
 
-input[type="checkbox"]:checked {
-    accent-color: #FB953E; 
-}
-
 .botao-sacola {
     position: relative; 
 
@@ -627,7 +785,6 @@ input[type="checkbox"]:checked {
     }
 }
 
-
 .sort-button::after {
     content: "";
     display: inline-block;
@@ -638,7 +795,6 @@ input[type="checkbox"]:checked {
     background-repeat: no-repeat;
     margin-left: 5px;
 }
-
 
 body,
 html {
@@ -651,4 +807,9 @@ html {
   margin-top: 20px;
   margin-left: 160px;
   margin-right: 160px;
+  @media(max-width: 500px) {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }

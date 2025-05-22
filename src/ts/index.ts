@@ -32,6 +32,9 @@ function setupEventListeners() {
   const sortOptions = document.querySelectorAll('input[name="sort"]');
   const sortButton = document.getElementById("sort-button") as HTMLElement;
 
+  // Event listeners para botões "Ver mais"
+  setupShowMoreButtons();
+
   // Event listeners para mobile
   if (sortToggle) {
     sortToggle.addEventListener('click', function () {
@@ -72,6 +75,9 @@ function setupEventListeners() {
       productsToShow = [...allProducts]; // Reset para todos os produtos
       renderFilteredProducts(productsToShow.slice(0, 9));
       showLoadMoreButton();
+      
+      // Reset dos botões "Ver mais"
+      resetShowMoreButtons();
     });
   }
 
@@ -105,6 +111,100 @@ function setupEventListeners() {
         showMoreButton.style.display = "none";
       }
     });
+  }
+}
+
+function setupShowMoreButtons() {
+  // Botões desktop
+  const showMoreColorsBtn = document.getElementById('show-more-colors') as HTMLElement;
+  const showMorePricesBtn = document.getElementById('show-more-prices') as HTMLElement;
+  
+  // Botões mobile
+  const mobileShowMoreColorsBtn = document.getElementById('mobile-show-more-colors') as HTMLElement;
+  const mobileShowMorePricesBtn = document.getElementById('mobile-show-more-prices') as HTMLElement;
+
+  if (showMoreColorsBtn) {
+    showMoreColorsBtn.addEventListener('click', function() {
+      toggleShowMore('color', false);
+    });
+  }
+
+  if (showMorePricesBtn) {
+    showMorePricesBtn.addEventListener('click', function() {
+      toggleShowMore('price', false);
+    });
+  }
+
+  if (mobileShowMoreColorsBtn) {
+    mobileShowMoreColorsBtn.addEventListener('click', function() {
+      toggleShowMore('color', true);
+    });
+  }
+
+  if (mobileShowMorePricesBtn) {
+    mobileShowMorePricesBtn.addEventListener('click', function() {
+      toggleShowMore('price', true);
+    });
+  }
+}
+
+function toggleShowMore(type: 'color' | 'price', isMobile: boolean) {
+  const prefix = isMobile ? 'mobile-' : '';
+  const containerSelector = isMobile ? 
+    `.filter-${type}-section .${type}-options-container` : 
+    `.filter-${type} .${type}-options-container`;
+  
+  const container = document.querySelector(containerSelector) as HTMLElement;
+  const buttonId = `${prefix}show-more-${type}s`;
+  const button = document.getElementById(buttonId) as HTMLElement;
+  
+  if (container && button) {
+    const isExpanded = container.classList.contains('expanded');
+    
+    if (isExpanded) {
+      container.classList.remove('expanded');
+      button.textContent = type === 'color' ? 'Ver todas as cores' : 'Ver todas as faixas';
+      button.classList.remove('expanded');
+    } else {
+      container.classList.add('expanded');
+      button.textContent = type === 'color' ? 'Ver menos cores' : 'Ver menos faixas';
+      button.classList.add('expanded');
+    }
+  }
+}
+
+function resetShowMoreButtons() {
+  // Reset containers
+  document.querySelectorAll('.color-options-container, .price-options-container').forEach(container => {
+    container.classList.remove('expanded');
+  });
+
+  // Reset botões desktop
+  const showMoreColorsBtn = document.getElementById('show-more-colors') as HTMLElement;
+  const showMorePricesBtn = document.getElementById('show-more-prices') as HTMLElement;
+  
+  if (showMoreColorsBtn) {
+    showMoreColorsBtn.textContent = 'Ver todas as cores';
+    showMoreColorsBtn.classList.remove('expanded');
+  }
+  
+  if (showMorePricesBtn) {
+    showMorePricesBtn.textContent = 'Ver todas as faixas';
+    showMorePricesBtn.classList.remove('expanded');
+  }
+
+  // Reset botões mobile
+  const mobileShowMoreColorsBtn = document.getElementById('mobile-show-more-colors') as HTMLElement;
+  const mobileShowMorePricesBtn = document.getElementById('mobile-show-more-prices') as HTMLElement;
+  
+  if (mobileShowMoreColorsBtn) {
+    mobileShowMoreColorsBtn.textContent = 'Ver todas as cores';
+    mobileShowMoreColorsBtn.classList.remove('expanded');
+  }
+  
+  if (mobileShowMorePricesBtn) {
+    mobileShowMorePricesBtn.textContent = 'Ver todas as faixas';
+    mobileShowMorePricesBtn.classList.remove('expanded');
   }
 }
 
@@ -235,6 +335,12 @@ function applyFilters() {
     const priceMatch = selectedPrices.length === 0 || selectedPrices.some(priceRange => {
       if (priceRange === "500") {
         return product.price >= 500;
+      }
+      if (priceRange === "1000") {
+        return product.price >= 1000;
+      }
+      if (priceRange === "2000") {
+        return product.price >= 2000;
       }
       const [min, max] = priceRange.split("-").map(Number);
       return product.price >= min && product.price <= max;
