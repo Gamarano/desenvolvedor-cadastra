@@ -82,18 +82,18 @@ function html() {
   return src(paths.html.src).pipe(browserSync.stream()).pipe(dest(paths.dest));
 }
 
-function img() {
+/*function img() {
   return src(paths.img.src).pipe(dest(paths.dest + "/img"));
-}
+}*/
 
-const build = series(clean, parallel(styles, scripts, html, img));
+const build = series(clean, parallel(styles, scripts, html));
 const dev = () => {
   watch(paths.scripts.watch, { ignoreInitial: false }, scripts).on(
     "change",
     browserSync.reload
   );
   watch(paths.styles.src, { ignoreInitial: false }, styles);
-  watch(paths.img.src, { ignoreInitial: false }, img);
+  //watch(paths.img.src, { ignoreInitial: false }, img);
   watch(paths.html.src, { ignoreInitial: false }, html).on(
     "change",
     browserSync.reload
@@ -105,4 +105,4 @@ exports.build = build;
 exports.server = server;
 exports.styles = styles;
 exports.scripts = scripts;
-exports.default = series(build, dev);
+exports.default = dev;
