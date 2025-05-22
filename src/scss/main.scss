@@ -1,28 +1,5 @@
 @import "reset";
 
-:root {
-  --cor-0: #000000;
-  --cor-1: #cccccc;
-  --cor-2: #666666;
-  --cor-3: #fb953e;
-}
-
-.cor-0 {
-  color: var(--cor-0);
-}
-
-.cor-1 {
-  color: var(--cor-1);
-}
-
-.cor-2 {
-  color: var(--cor-2);
-}
-
-.cor-3 {
-  color: var(--cor-3);
-}
-
 body,
 html {
     font-family: 'Open Sans', sans-serif;
@@ -73,6 +50,10 @@ html {
     width: 175px;
     height: 35px;
     text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    font-family: 'Open Sans';
 }
 
 .listProducts__list {
@@ -107,23 +88,66 @@ html {
         color: #ffffff;
         background: #000000;
         text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        font-family: 'Open Sans';
     }
 
     div {
-        display: flex;
-        justify-content: center;
-
         p,
         span {
             font-size: 16px;
             font-weight: 700;
             padding-bottom: 3px;
+            text-align: center;
         }
 
         span {
             font-weight: 400;
             color: #666666;
         }
+    }
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      transition: opacity 0.3s ease;
+      
+      background-color: #f0f0f0;
+      background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%),
+                       linear-gradient(-45deg, #f0f0f0 25%, transparent 25%),
+                       linear-gradient(45deg, transparent 75%, #f0f0f0 75%),
+                       linear-gradient(-45deg, transparent 75%, #f0f0f0 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      
+      &:not([src]), &[src=""] {
+          opacity: 0.3;
+      }
+      
+      &.loading {
+          opacity: 0.5;
+      }
+      
+      &.loaded {
+          opacity: 1;
+      }
+      
+      &.error {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #f8f8f8;
+          color: #666;
+          font-size: 12px;
+          text-align: center;
+          
+          &::after {
+              content: "Imagem não encontrada";
+          }
+      }
     }
 }
 
@@ -241,9 +265,11 @@ html {
         background-color: #f9f9f9;
         padding: 5px 10px;
         cursor: pointer;
-        width: 142px;
+        width: 144px;
         height: 42px;
         background: none;
+        font-family: 'Open Sans';
+        font-size: 16px;
     }
 
     .sort-options {
@@ -253,8 +279,9 @@ html {
         border: 1px solid #ccc;
         border-top: none;
         width: 142px;
-        margin-top: 5px;
-
+        font-family: 'Open Sans';
+        font-size: 16px;
+        padding: 0;
     }
 }
 
@@ -548,23 +575,33 @@ html {
 }
 
 .sort-options label {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 4px;
+  display: block;
+  margin: 0;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 0;
+  width: 100%;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
 }
 
 .sort-options input[type="radio"]:checked+label {
     background-color: #ccc;
+    color: #000000;
 }
 
 .sort-options label:hover {
     background-color: #FB953E;
+    color: #ffffff;
 }
 
-input[type="checkbox"] {
-    accent-color: orange; 
+.sort-options input[type="radio"]:checked + label:hover {
+  background-color: #FB953E;
+  color: #ffffff;
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #FB953E; 
 }
 
 .botao-sacola {
