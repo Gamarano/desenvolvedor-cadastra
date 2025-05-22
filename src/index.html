@@ -1,277 +1,521 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Desenvolvedor Cadastra</title>
     <link rel="stylesheet" href="main.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-      rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <header class="header">
-        <section class="container">
-            <div class="logo">
-                <img src="img/cadastra.svg" alt="Cadastra">
-              </div>
-              <div class="cart">
-                <button class="botao-sacola">
-                  <img src="img/sacola.svg" alt="Sacola">
-                  <span class="contador">0</span>
-                </button>
-            </div>
-        </section>
+      <section class="container">
+        <div class="logo">
+          <img src="img/cadastra.svg" alt="Cadastra" />
+        </div>
+        <div class="cart">
+          <button class="botao-sacola">
+            <img src="img/sacola.svg" alt="Sacola" />
+            <span class="contador">0</span>
+          </button>
+        </div>
+      </section>
     </header>
 
     <main>
-        <div class="container">
-          <div>
-            <h1 class="title-mobile">Blusas</h1>
+      <div class="container">
+        <div>
+          <h1 class="title-mobile">Blusas</h1>
+        </div>
+        <div class="mobile-controls">
+          <button id="filter-toggle" class="filter-toggle">Filtrar</button>
+          <button id="sort-toggle" class="sort-toggle">Ordenar</button>
+        </div>
+
+        <div id="mobile-filter-menu" class="side-panel" style="display: none">
+          <div class="filter-header">
+            <span class="title-filter-mobile">Filtrar</span>
+            <button id="close-filter-menu" class="close-filter-menu"><img src="img/close.svg" alt="Close" /></button>
           </div>
-            <div class="mobile-controls">
-                <button id="filter-toggle" class="filter-toggle">Filtrar</button>
-                <button id="sort-toggle" class="sort-toggle">Ordenar</button>
+          <div class="filter-options">
+            <div class="filter-color-section">
+              <h3 class="title-cor-mobile" data-filter="color">Cores</h3>
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-amarelo"
+                  name="color"
+                  value="Amarelo"
+                />
+                <label for="mobile-color-amarelo">Amarelo</label>
+              </div>              
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-azul"
+                  name="color"
+                  value="Azul"
+                />
+                <label for="mobile-color-azul">Azul</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-branco"
+                  name="color"
+                  value="Branco"
+                />
+                <label for="mobile-color-branco">Branco</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-cinza"
+                  name="color"
+                  value="Cinza"
+                />
+                <label for="mobile-color-cinza">Cinza</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-laranja"
+                  name="color"
+                  value="Laranja"
+                />
+                <label for="mobile-color-laranja">Laranja</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-verde"
+                  name="color"
+                  value="Verde"
+                />
+                <label for="mobile-color-verde">Verde</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-vermelho"
+                  name="color"
+                  value="Vermelho"
+                />
+                <label for="mobile-color-vermelho">Vermelho</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-preto"
+                  name="color"
+                  value="Preto"
+                />
+                <label for="mobile-color-preto">Preto</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-rosa"
+                  name="color"
+                  value="Rosa"
+                />
+                <label for="mobile-color-rosa">Rosa</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="mobile-color-Vinho"
+                  name="color"
+                  value="vinho"
+                />
+                <label for="mobile-color-vinho">Vinho</label>
+              </div> 
             </div>
 
-            <div id="mobile-filter-menu" class="side-panel" style="display:none;">
-              <div class="filter-header">
-                  <span class="title-filter-mobile">Filtrar</span>
-                  <button id="close-filter-menu" class="close-filter-menu">X</button>
-              </div>
-              <div class="filter-options">
-                <div class="filter-color-section">
-                  <h3 class="title-cor-mobile">Cores</h3>
-                  <div class="color-option">
-                    <input type="checkbox" id="color-cinza" name="color" value="Cinza">
-                    <label for="color-cinza">Cinza</label>
+            <div class="filter-size-section">
+              <h3 class="title-size-mobile" data-filter="size">Tamanhos</h3>
+              <div class="sizes-container">
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-p"
+                    name="size"
+                    value="P"
+                  />
+                  <label for="mobile-size-p">P</label>
                 </div>
-                <div class="color-option">
-                    <input type="checkbox" id="color-preto" name="color" value="Preto">
-                    <label for="color-preto">Preto</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-m"
+                    name="size"
+                    value="M"
+                  />
+                  <label for="mobile-size-m">M</label>
                 </div>
-                <div class="color-option">
-                    <input type="checkbox" id="color-laranja" name="color" value="Laranja">
-                    <label for="color-laranja">Laranja</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-g"
+                    name="size"
+                    value="G"
+                  />
+                  <label for="mobile-size-g">G</label>
                 </div>
-                <div class="color-option">
-                    <input type="checkbox" id="color-branco" name="color" value="Branco">
-                    <label for="color-branco">Branco</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-gg"
+                    name="size"
+                    value="GG"
+                  />
+                  <label for="mobile-size-gg">GG</label>
                 </div>
-                <div class="color-option">
-                    <input type="checkbox" id="color-amarelo" name="color" value="Amarelo">
-                    <label for="color-amarelo">Amarelo</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-u"
+                    name="size"
+                    value="U"
+                  />
+                  <label for="mobile-size-u">U</label>
                 </div>
-                <div class="color-option">
-                    <input type="checkbox" id="color-rosa" name="color" value="Rosa">
-                    <label for="color-rosa">Rosa</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-36"
+                    name="size"
+                    value="36"
+                  />
+                  <label for="mobile-size-36">36</label>
                 </div>
-              </div>
-              <div class="filter-size-section">
-                  <h3 class="title-size-mobile">Tamanhos</h3>
-                  <div class="sizes-container">
-                    <div class="size-option">
-                        <input type="checkbox" id="size-p" name="size" value="P">
-                        <label for="size-p">P</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-m" name="size" value="M">
-                        <label for="size-m">M</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-g" name="size" value="G">
-                        <label for="size-g">G</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-gg" name="size" value="GG">
-                        <label for="size-gg">GG</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-u" name="size" value="U">
-                        <label for="size-u">U</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-36" name="size" value="36">
-                        <label for="size-36">36</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-38" name="size" value="38">
-                        <label for="size-38">38</label>
-                    </div>
-                    <div class="size-option">
-                        <input type="checkbox" id="size-40" name="size" value="40">
-                        <label for="size-40">40</label>
-                    </div>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-38"
+                    name="size"
+                    value="38"
+                  />
+                  <label for="mobile-size-38">38</label>
                 </div>
-              </div>
-              <div class="filter-price-section">
-                  <h3 class="title-price-mobile">Faixa de Preço</h3>
-                  <div class="price-option">
-                    <input type="checkbox" id="price-0-50" name="price" value="0-50">
-                    <label for="price-0-50">De R$ 0 até R$ 50</label>
-                </div>
-                <div class="price-option">
-                    <input type="checkbox" id="price-51-150" name="price" value="51-150">
-                    <label for="price-51-150">De R$ 51 até R$ 150</label>
-                </div>
-                <div class="price-option">
-                    <input type="checkbox" id="price-151-300" name="price" value="151-300">
-                    <label for="price-151-300">De R$ 151 até R$ 300</label>
-                </div>
-                <div class="price-option">
-                    <input type="checkbox" id="price-301-500" name="price" value="301-500">
-                    <label for="price-301-500">De R$ 301 até R$ 500</label>
-                </div>
-                <div class="price-option">
-                    <input type="checkbox" id="price-500" name="price" value="500">
-                    <label for="price-500">A partir de R$ 500</label>
+                <div class="size-option">
+                  <input
+                    type="checkbox"
+                    id="mobile-size-40"
+                    name="size"
+                    value="40"
+                  />
+                  <label for="mobile-size-40">40</label>
                 </div>
               </div>
+            </div>
+
+            <div class="filter-price-section">
+              <h3 class="title-price-mobile" data-filter="price">
+                Faixa de Preço
+              </h3>
+              <div class="price-option">
+                <input
+                  type="checkbox"
+                  id="mobile-price-0-50"
+                  name="price"
+                  value="0-50"
+                />
+                <label for="mobile-price-0-50">De R$ 0 até R$ 50</label>
               </div>
-              <div class="buttons-mobile">
-                <button class="apply-button-mobile">Aplicar</button>
-                <button class="clean-button-mobile">Limpar</button>
+              <div class="price-option">
+                <input
+                  type="checkbox"
+                  id="mobile-price-51-150"
+                  name="price"
+                  value="51-150"
+                />
+                <label for="mobile-price-51-150">De R$ 51 até R$ 150</label>
               </div>
+              <div class="price-option">
+                <input
+                  type="checkbox"
+                  id="mobile-price-151-300"
+                  name="price"
+                  value="151-300"
+                />
+                <label for="mobile-price-151-300">De R$ 151 até R$ 300</label>
+              </div>
+              <div class="price-option">
+                <input
+                  type="checkbox"
+                  id="mobile-price-301-500"
+                  name="price"
+                  value="301-500"
+                />
+                <label for="mobile-price-301-500">De R$ 301 até R$ 500</label>
+              </div>
+              <div class="price-option">
+                <input
+                  type="checkbox"
+                  id="mobile-price-500"
+                  name="price"
+                  value="500"
+                />
+                <label for="mobile-price-500">A partir de R$ 500</label>
+              </div>
+            </div>
+          </div>
+          <div class="buttons-mobile">
+            <button class="apply-button-mobile">Aplicar</button>
+            <button class="clean-button-mobile">Limpar</button>
+          </div>
+        </div>
+
+        <div id="mobile-sort-menu" class="side-panel" style="display: none">
+          <div class="filter-header">
+            <span class="title-sort-mobile">Ordenar</span>
+            <button id="close-sort-menu" class="close-sort-menu"><img src="img/close.svg" alt="Close" /></button>
+          </div>
+          <div class="sort-options">
+            <label
+              ><input type="radio" name="sort" value="recent" />Mais
+              recentes</label
+            >
+            <label
+              ><input type="radio" name="sort" value="price-low" />Menor
+              preço</label
+            >
+            <label
+              ><input type="radio" name="sort" value="price-high" />Maior
+              preço</label
+            >
+          </div>
+        </div>
+
+        <aside class="filters">
+          <div class="filter-color">
+            <h1 class="title-filter">Blusas</h1>
+            <h3 class="title-filtercor">Cores</h3>
+            <div class="color-options-container">              
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-amarelo"
+                  name="color"
+                  value="Amarelo"
+                />
+                <label for="color-amarelo">Amarelo</label>
+              </div>              
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-azul"
+                  name="color"
+                  value="Azul"
+                />
+                <label for="color-azul">Azul</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-branco"
+                  name="color"
+                  value="Branco"
+                />
+                <label for="color-branco">Branco</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-cinza"
+                  name="color"
+                  value="Cinza"
+                />
+                <label for="color-cinza">Cinza</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-laranja"
+                  name="color"
+                  value="Laranja"
+                />
+                <label for="color-laranja">Laranja</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-verde"
+                  name="color"
+                  value="Verde"
+                />
+                <label for="color-verde">Verde</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-vermelho"
+                  name="color"
+                  value="Vermelho"
+                />
+                <label for="color-vermelho">Vermelho</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-preto"
+                  name="color"
+                  value="Preto"
+                />
+                <label for="color-preto">Preto</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-rosa"
+                  name="color"
+                  value="Rosa"
+                />
+                <label for="color-rosa">Rosa</label>
+              </div> 
+              <div class="color-option">
+                <input
+                  type="checkbox"
+                  id="color-Vinho"
+                  name="color"
+                  value="vinho"
+                />
+                <label for="color-vinho">Vinho</label>
+              </div> 
+            </div>
+            <button class="show-more-button" id="show-more-colors">
+              Ver todas as cores
+            </button>
           </div>
 
-          <div id="mobile-sort-menu" class="side-panel" style="display:none;">
-            <div class="filter-header">
-                <span class="title-sort-mobile">Ordenar</span>
-                <button id="close-sort-menu" class="close-sort-menu">X</button>
+          <div class="filter-size">
+            <h3 class="title-tamanhos">Tamanhos</h3>
+            <div class="sizes-container">
+              <div class="size-option">
+                <input type="checkbox" id="size-p" name="size" value="P" />
+                <label for="size-p">P</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-m" name="size" value="M" />
+                <label for="size-m">M</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-g" name="size" value="G" />
+                <label for="size-g">G</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-gg" name="size" value="GG" />
+                <label for="size-gg">GG</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-u" name="size" value="U" />
+                <label for="size-u">U</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-36" name="size" value="36" />
+                <label for="size-36">36</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-38" name="size" value="38" />
+                <label for="size-38">38</label>
+              </div>
+              <div class="size-option">
+                <input type="checkbox" id="size-40" name="size" value="40" />
+                <label for="size-40">40</label>
+              </div>
             </div>
-            <div class="sort-options">
-                <label><input type="radio" name="sort" value="recent">Mais recentes</label>
-                <label><input type="radio" name="sort" value="price-low">Menor preço</label>
-                <label><input type="radio" name="sort" value="price-high">Maior preço</label>
+          </div>
+
+          <div class="filter-price">
+            <h3 class="title-price">Faixa de preço</h3>
+            <div class="price-option">
+              <input
+                type="checkbox"
+                id="price-0-50"
+                name="price"
+                value="0-50"
+              />
+              <label for="price-0-50">De R$ 0 até R$ 50</label>
             </div>
-        </div>
+            <div class="price-option">
+              <input
+                type="checkbox"
+                id="price-51-150"
+                name="price"
+                value="51-150"
+              />
+              <label for="price-51-150">De R$ 51 até R$ 150</label>
+            </div>
+            <div class="price-option">
+              <input
+                type="checkbox"
+                id="price-151-300"
+                name="price"
+                value="151-300"
+              />
+              <label for="price-151-300">De R$ 151 até R$ 300</label>
+            </div>
+            <div class="price-option">
+              <input
+                type="checkbox"
+                id="price-301-500"
+                name="price"
+                value="301-500"
+              />
+              <label for="price-301-500">De R$ 301 até R$ 500</label>
+            </div>
+            <div class="price-option">
+              <input type="checkbox" id="price-500" name="price" value="500" />
+              <label for="price-500">A partir de R$ 500</label>
+            </div>
+          </div>
+        </aside>
 
-            <aside class="filters">
-                <div class="filter-color">
-                    <h1 class="title-filter">Blusas</h1>
-                    <h3 class="title-filtercor">Cores</h3>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-cinza" name="color" value="Cinza">
-                        <label for="color-cinza">Cinza</label>
-                    </div>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-preto" name="color" value="Preto">
-                        <label for="color-preto">Preto</label>
-                    </div>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-laranja" name="color" value="Laranja">
-                        <label for="color-laranja">Laranja</label>
-                    </div>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-branco" name="color" value="Branco">
-                        <label for="color-branco">Branco</label>
-                    </div>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-amarelo" name="color" value="Amarelo">
-                        <label for="color-amarelo">Amarelo</label>
-                    </div>
-                    <div class="color-option">
-                        <input type="checkbox" id="color-rosa" name="color" value="Rosa">
-                        <label for="color-rosa">Rosa</label>
-                    </div>
-                </div>
+        <main class="product-display">
+          <div class="listProducts__list">
+            <ul></ul>
+          </div>
+        </main>
 
-                <div class="filter-size">
-                    <h3 class="title-tamanhos">Tamanhos</h3>
-                    <div class="sizes-container">
-                        <div class="size-option">
-                            <input type="checkbox" id="size-p" name="size" value="P">
-                            <label for="size-p">P</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-m" name="size" value="M">
-                            <label for="size-m">M</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-g" name="size" value="G">
-                            <label for="size-g">G</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-gg" name="size" value="GG">
-                            <label for="size-gg">GG</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-u" name="size" value="U">
-                            <label for="size-u">U</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-36" name="size" value="36">
-                            <label for="size-36">36</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-38" name="size" value="38">
-                            <label for="size-38">38</label>
-                        </div>
-                        <div class="size-option">
-                            <input type="checkbox" id="size-40" name="size" value="40">
-                            <label for="size-40">40</label>
-                        </div>
-                    </div>
-                </div>
+        <aside class="sorting">
+          <div class="sort-container">
+            <div class="sort-dropdown" id="sort-dropdown">
+              <button class="sort-button" id="sort-button">Ordenar por:</button>
+              <div class="sort-options" id="sort-options">
+                <label
+                  ><input type="radio" name="sort" value="recent" />Mais
+                  recentes</label
+                >
+                <label
+                  ><input type="radio" name="sort" value="price-low" />Menor
+                  preço</label
+                >
+                <label
+                  ><input type="radio" name="sort" value="price-high" />Maior
+                  preço</label
+                >
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
 
-                <div class="filter-price">
-                    <h3 class="title-price">Faixa de preço</h3>
-                    <div class="price-option">
-                        <input type="checkbox" id="price-0-50" name="price" value="0-50">
-                        <label for="price-0-50">De R$ 0 até R$ 50</label>
-                    </div>
-                    <div class="price-option">
-                        <input type="checkbox" id="price-51-150" name="price" value="51-150">
-                        <label for="price-51-150">De R$ 51 até R$ 150</label>
-                    </div>
-                    <div class="price-option">
-                        <input type="checkbox" id="price-151-300" name="price" value="151-300">
-                        <label for="price-151-300">De R$ 151 até R$ 300</label>
-                    </div>
-                    <div class="price-option">
-                        <input type="checkbox" id="price-301-500" name="price" value="301-500">
-                        <label for="price-301-500">De R$ 301 até R$ 500</label>
-                    </div>
-                    <div class="price-option">
-                        <input type="checkbox" id="price-500" name="price" value="500">
-                        <label for="price-500">A partir de R$ 500</label>
-                    </div>
-                </div>
-            </aside>
-
-            <main class="product-display">
-                <div class="listProducts__list">
-                    <ul></ul>
-                </div>
-            </main>
-
-            <aside class="sorting">
-                <div class="sort-container">
-                    <div class="sort-dropdown" id="sort-dropdown">
-                        <button class="sort-button" id="sort-button">Ordenar por:</button>
-                        <div class="sort-options" id="sort-options">
-                            <label><input type="radio" name="sort" value="recent">Mais recentes</label>
-                            <label><input type="radio" name="sort" value="price-low">Menor preço</label>
-                            <label><input type="radio" name="sort" value="price-high">Maior preço</label>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-
-        <div class="showmore-div">
-            <button class="showmore-button">Carregar mais</button>
-        </div>
+      <div class="showmore-div">
+        <button class="showmore-button">Carregar mais</button>
+      </div>
     </main>
 
     <footer class="footer">
-        <h4 class="cadastra-footer">
-            Cadastra: Implantação de E-commerce VTEX
-        </h4>
+      <h4 class="cadastra-footer">Cadastra: Implantação de E-commerce VTEX</h4>
     </footer>
 
     <script src="bundle.js"></script>
-</body>
+  </body>
 </html>
