@@ -105,4 +105,4 @@ exports.build = build;
 exports.server = server;
 exports.styles = styles;
 exports.scripts = scripts;
-exports.default = dev;
+exports.default = series(build, dev);

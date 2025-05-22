@@ -550,7 +550,7 @@ main {
   .filter-header {
     position: absolute;
     top: 0;
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -674,7 +674,7 @@ main {
 
 @media (max-width: 800px) {
   .filter-color-section {
-    margin-top: 50px;
+    margin-top: 55px;
     margin-left: 16px;
     margin-right: 16px;
   }
@@ -747,7 +747,6 @@ main {
   .filter-size-section {
     margin-left: 16px;
     margin-right: 16px;
-    margin-top: 30px;
   }
 
   .title-size-mobile {

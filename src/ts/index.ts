@@ -299,61 +299,10 @@ function renderFilteredProducts(products: Product[]) {
     const cardProduct = document.createElement("li");
     cardProduct.classList.add("cardProduct");
 
-    const productImage = document.createElement("img");
-    productImage.classList.add("loading");
+    const productImage = document.createElement("img");   
 
-    let imagePath = product.image;
-
-    if (!imagePath.includes(".")) {
-      imagePath = `${imagePath}.jpg`;
-    }
-
-    if (!imagePath.startsWith("img/")) {
-      imagePath = `img/${imagePath}`;
-    }
-
-    productImage.alt = product.name;
-
-    productImage.onload = function () {
-      productImage.classList.remove("loading");
-      productImage.classList.add("loaded");
-    };
-
-    productImage.onerror = function () {
-      const alternativePaths = [
-        `img/${product.image}.png`,
-        `img/${product.image}.jpeg`,
-        `./img/${product.image}.jpg`,
-        `./img/${product.image}.png`,
-      ];
-
-      let pathIndex = 0;
-      const tryNextPath = () => {
-        if (pathIndex < alternativePaths.length) {
-          productImage.src = alternativePaths[pathIndex];
-          pathIndex++;
-        } else {
-          productImage.classList.remove("loading");
-          productImage.classList.add("error");
-          productImage.style.height = "200px";
-          productImage.style.backgroundColor = "#f8f8f8";
-          productImage.style.border = "1px dashed #ccc";
-        }
-      };
-
-      productImage.onerror = () => {
-        if (pathIndex < alternativePaths.length) {
-          tryNextPath();
-        } else {
-          productImage.classList.remove("loading");
-          productImage.classList.add("error");
-        }
-      };
-
-      tryNextPath();
-    };
-
-    productImage.src = imagePath;
+    productImage.alt = product.name; 
+    productImage.src = product.image;
 
     const productName = document.createElement("h2");
     productName.textContent = product.name.toUpperCase();
